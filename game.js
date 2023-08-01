@@ -14,6 +14,18 @@ function playerPlay(/*round*/) {
 function playRound(/*playerSelection,computerSelection*/) {
     // should return who the winner is, player, computer or is a tie
     // gets playerSelection, and computerSelection
+    if (playerSelection==computerSelection){
+        return "tie"
+    } else {
+       switch (playerSelection) {
+        case "rock":
+           return computerSelection=="paper"? "computer" : "player";
+        case "paper":
+            return computerSelection=="scissors"?"computer" : "player";
+        case "scissors":
+            return computerSelection=="rock"? "computer" : "player";
+        } 
+    }
 }
 
 function game() {
