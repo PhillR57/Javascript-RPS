@@ -2,6 +2,19 @@
 
 function computerPlay() {
     //should return "rock", "paper", or "scissors"
+    let computer_choice = Math.floor(Math.random() * 3);
+    if (computer_choice == 0){
+        return "rock";
+    }
+    else if (computer_choice == 1){
+        return "paper";
+    }
+    else if (computer_choice == 2){
+        return "scissors";
+    }
+    else {
+        computerPlay();
+    }
 }
 
 
