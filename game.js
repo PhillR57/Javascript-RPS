@@ -31,7 +31,6 @@ function playerPlay(round) {
     );
     selectOption = selectOption.toLowerCase();
   }
-
   return selectOption;
 }
 
@@ -72,11 +71,14 @@ function game() {
     if (result === "player") {
       console.log("Player wins this round!");
       playerScore++;
+      round++; // Proceed to the next round since the player won this round
     } else if (result === "computer") {
-      console.log("Computer wins this round!");
+      console.log("Computer wins this round! Let's play this round again.");
       computerScore++;
+      // Don't increment round, so the same round will be repeated until the player wins.
     } else {
-      console.log("It's a tie!");
+      console.log("It's a tie! Let's play this round again.");
+      // Don't increment round, so the same round will be repeated until the player wins.
     }
   }
 
