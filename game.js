@@ -59,7 +59,7 @@ function game() {
   let playerScore = 0;
   let computerScore = 0;
 
-  for (let round = 1; round <= 5; round++) {
+  for (let round = 1; round <= 5; ) {
     const playerSelection = playerPlay(round);
     const computerSelection = computerPlay();
     const result = playRound(playerSelection, computerSelection);
