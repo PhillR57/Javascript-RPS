@@ -97,8 +97,8 @@ function game() {
         }
       }
     }
-    if(i==3) alert("You are half way, keep going!");
-    if(i==4) alert("Your are almost there, keep going!");
+    if(round==3) alert("You are half way, keep going!");
+    if(round==4) alert("Your are almost there, keep going!");
   }
 
   if(gameFinished===false){
