@@ -87,7 +87,7 @@ function handleEndGame(status,playerScore,computerScore,playerName) {
     } else if (playerScore>computerScore) {
       alert("You defeated the sinister Virus, congrats, your data is now safe!!!");  
     } else {
-      alert("The sinister Virus!!!! You lost your data")
+      alert("The sinister Virus wins!!!! You lost your data")
     }    
   }
   const playAgain = confirm("Do you want to play again?");
