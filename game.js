@@ -19,6 +19,7 @@ function playerPlay(round) {
     if(selectOption===null) return "cancel" //cancels the game
     
     selectOption = selectOption.toLowerCase();
+    selectOption = selectOption.trim();
     if (options.includes(selectOption.trim())) {
       return selectOption;
     } else {
