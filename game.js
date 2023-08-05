@@ -13,7 +13,7 @@ function playerPlay(round) {
   const options = ["rock", "paper", "scissors"];
   while (true) {
     let selectOption = prompt(
-      `Round ${round}: Type one of the following options:\n'rock', 'paper', or 'scissors'`
+      `Round ${round}: Type one of the following options:\n'rock'\n'paper'\n'scissors'`
     );
     if(selectOption===null) return "cancel" //cancels the game
     
