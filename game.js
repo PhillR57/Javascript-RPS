@@ -63,15 +63,23 @@ const virusAscii = `
 ⠀⠀⠀⠈⠓⠊⠁⠉⠛⠿⢿⣿⡇⠀⠀⠀⠀⠃⣿⡿⠿⠻⡉⠉⠑⠐⠁⠀⠀⠀
 ⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠣⠄⠀⠀⠠⠴⠀⠀⠀⠀⠈⠢⡀⠀⠀⠀⠀⡠`;
 
-
+function playerName_Input(){
+    let playerName = prompt("Enter your name");
+    if(playerName==null || playerName==""){
+      alert("Invalid name. Please choose a valid name.");
+      playerName_Input();
+    }
+    else{
+        return playerName;
+    }
+}
 
 function game() {
   let playerScore = 0;
   let computerScore = 0;
   let gameFinished = false;
   alert("Greetings, puny human!\nI am the sinister Virus, lurking in the dark corners of your digital world. My sole purpose is to annihilate all your precious data, leaving nothing but a void in your pathetic existence. Your files, memories, and cherished moments - all shall be devoured by my insatiable hunger for chaos.\nPrepare yourself, for the only way to thwart my wicked plot is to face me in a perilous 5-round showdown of ROCK, PAPER, SCISSORS.\nCan you summon the courage to outsmart me, the all-knowing Virus? Do you possess the cunning to anticipate my every move?\nBeat me in five rounds and you will save your data.\nYou have to repeat the round until you win it to pass to the next round.\nOpen the browser's console or Press F12 and\nPrepare to play!")
-  let playerName = prompt("Enter your name");
-  if(playerName==null || playerName=="") playerName = "Player";
+  let playerName = playerName_Input();
   console.log(virusAscii);
   console.log("Try to beat me!")
   for (let round = 1; round <= 5 && gameFinished==false; round++) {
