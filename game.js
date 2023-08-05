@@ -1,42 +1,32 @@
-//I think we should stick to lowercase to return the results so it's easier
-
 function computerPlay() {
-  //should return "rock", "paper", or "scissors"
   let computer_choice = Math.floor(Math.random() * 3);
   if (computer_choice == 0) {
     return "rock";
   } else if (computer_choice == 1) {
     return "paper";
-  } else if (computer_choice == 2) {
-    return "scissors";
   } else {
-    computerPlay();
+    return "scissors";
   }
 }
 
 function playerPlay(round) {
-  // should return "rock", "paper", or "scissors"
-  // I think it would be nice to show the player in the prompt what round is playing, so maybe it should get it as a parameter
-  // prevent the player to write anything anything different to rock, paper or scissors, also it shouldn't matter if they use lower or uppercase
-  // (NOTE: I am not sure if it should be the right way)
   const options = ["rock", "paper", "scissors"];
-  let selectOption = prompt(
-    `Round ${round}: Select 'rock', 'paper', or 'scissors'`
-  );
-  selectOption = selectOption.toLowerCase();
-
-  while (!options.includes(selectOption)) {
-    selectOption = prompt(
-      "Invalid choice. Please, select: 'rock', 'paper', or 'scissors'"
+  while (true) {
+    let selectOption = prompt(
+      `Round ${round}: Type one of the following options:\n'rock', 'paper', or 'scissors'`
     );
+    if(selectOption===null) return "cancel" //cancels the game
+    
     selectOption = selectOption.toLowerCase();
+    if (options.includes(selectOption)) {
+      return selectOption;
+    } else {
+      alert("Invalid choice. Please, type: 'rock', 'paper', or 'scissors'")
+    }
   }
-  return selectOption;
-}
+} 
 
 function playRound(playerSelection, computerSelection) {
-  // should return who the winner is, player, computer or is a tie
-  // gets playerSelection, and computerSelection
   if (playerSelection == computerSelection) {
     return "tie";
   } else {
@@ -51,40 +41,79 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+const virusAscii = `
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡔⠂⠀⠀⠐⠒⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁
+⠀⠀⠀⠀⢀⡀⠀⠀⢀⣠⣴⣶⡇⠀⠀⠀⠀⣄⠐⠂⠤⡀⠀⠀⢀⠀⠀⠀⠀⠀
+⠀⠀⠀⢀⠴⣭⠞⠑⢕⢿⣿⣿⡿⢇⡀⠀⠀⢀⣻⢀⡀⠀⡠⡣⠋⢙⠵⠂⠀⠀⠀
+⠀⠐⠁⢴⠁⠀⠀⠀⢑⡯⠁⠀⠈⠉⠉⠋⠉⠁⠀⠀⣽⡍⠀⠀⠀⢱⡂⠀⠀⠀
+⠀⠀⠀⣴⣷⣄⣀⡴⠟⠁⠢⣀⠀⠄⠀⠀⠀⠀⣀⠄⠘⢟⢦⣄⡰⠋⠱⡀⠀⠀
+⠀⠀⣸⣿⣿⡿⠁⢀⣼⣦⡀⠈⠑⠪⢄⣧⠵⠚⠁⢀⣤⣷⡈⠁⢃⠀⠀⢡⠀⠀
+⠎⠉⠙⠹⢛⢇⠀⢸⣿⡇⢨⣶⣄⠆⠈⠀⠑⣤⢴⡏⠈⣿⡇⠀⣨⡐⠢⠈⠀⠀
+⠀⠀⠀⠀⠀⢸⠀⢸⣿⣷⣀⠉⢉⣨⣶⣷⣜⡉⠉⣀⣼⣿⡇⢰⣿⠀⠀⠀⠀⠀
+⠀⠀⠀⣀⣀⡼⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⠠⠿⣀⣀⠀⠀⠀
+⠀⠀⢻⣿⣿⣧⠀⠀⠈⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠱⠛⠛⠻⠀⠀
+⠎⠉⠙⠹⢿⣇⠀⠀⠀⠈⠻⣿⡿⠟⠛⠛⠻⢿⡟⠁⠀⣠⡶⠳⡣⡀⢀⠃⠀⠀
+⠀⠀⠀⢠⠷⣄⠀⢀⣴⣿⣶⣦⡌⠉⠁⠀⠉⡹⣤⣶⣿⣦⡀⠀⣠⠖⠅⠀⠀⠀
+⠀⠀⠀⠈⠓⠊⠁⠉⠛⠿⢿⣿⡇⠀⠀⠀⠀⠃⣿⡿⠿⠻⡉⠉⠑⠐⠁⠀⠀⠀
+⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠣⠄⠀⠀⠠⠴⠀⠀⠀⠀⠈⠢⡀⠀⠀⠀⠀⡠`;
+
+
+
 function game() {
-  //it calls the other three functions
-  //provide round variable to playerPlay()
-  //gets "rock","paper" of "scissors" from playerPlay() and computerPlay()
-  //provide (playerSelection,computerSelection) in that order and as single variables, not object nor array, to playRound()
   let playerScore = 0;
   let computerScore = 0;
-
-  for (let round = 1; round <= 5; ) {
-    const playerSelection = playerPlay(round);
-    const computerSelection = computerPlay();
-    const result = playRound(playerSelection, computerSelection);
-
-    console.log(`Round ${round}:`);
-    console.log(`Player selects: ${playerSelection}`);
-    console.log(`Computer selects: ${computerSelection}`);
-
-    if (result === "player") {
-      console.log("Player wins this round!");
-      playerScore++;
-      round++; // Proceed to the next round since the player won this round
-    } else if (result === "computer") {
-      console.log("Computer wins this round! Let's play this round again.");
-      computerScore++;
-      // Don't increment round, so the same round will be repeated until the player wins.
-    } else {
-      console.log("It's a tie! Let's play this round again.");
-      // Don't increment round, so the same round will be repeated until the player wins.
+  let gameFinished = false;
+  alert("Greetings, puny human!\nI am the sinister Virus, lurking in the dark corners of your digital world. My sole purpose is to annihilate all your precious data, leaving nothing but a void in your pathetic existence. Your files, memories, and cherished moments - all shall be devoured by my insatiable hunger for chaos.\nPrepare yourself, for the only way to thwart my wicked plot is to face me in a perilous 5-round showdown of ROCK, PAPER, SCISSORS.\nCan you summon the courage to outsmart me, the all-knowing Virus? Do you possess the cunning to anticipate my every move?\nBeat me in five rounds and you will save your data.\nYou have to repeat the round until you win it to pass to the next round.\nOpen the browser's console or Press F12 and\nPrepare to play!")
+  let playerName = prompt("Enter your name");
+  if(playerName==null) playerName = "Player";
+  console.log(virusAscii);
+  console.log("Try to beat me!")
+  for (let round = 1; round <= 5 && gameFinished==false; round++) {
+    playerSelection = "";
+    computerSelection = "";
+    result = "";
+    while (result!="player" && gameFinished==false) {
+      playerSelection = playerPlay(round);
+      computerSelection = computerPlay();
+      if (playerSelection==="cancel") {
+        console.warn("GAME OVER");
+        console.log("You lost your data");
+        alert("GAME OVER\nYou lost your data");
+        gameFinished = !gameFinished;
+      } else {
+        result = playRound(playerSelection, computerSelection);
+        console.warn(`Round ${round}:`);
+        console.log(`${playerName} selection: ${playerSelection}`);
+        console.log(`Virus selection: ${computerSelection}`);
+        if (result === "player") {
+          console.warn(`${playerName} wins this round!`);
+          playerScore++;
+        } else if (result === "computer") {
+          console.warn("Virus wins this round! Let's play this round again.");
+          computerScore++;
+        } else {
+          console.warn("It's a tie! Let's play this round again.");
+        }
+      }
     }
   }
 
-  console.log("Final Score:");
-  console.log(`Player: ${playerScore}`);
-  console.log(`Computer: ${computerScore}`);
+  if(gameFinished===false){
+    alert("You defeated the sinister Virus, congrats, your data is now safe!!!")
+    console.log("Final Score:");
+    console.log(`${playerName}: ${playerScore}`);
+    console.log(`Computer: ${computerScore}`);
+  }
+
+  const playAgain = confirm("Do you want to play again?");
+  if (playAgain) {
+    console.clear();
+    game(); // Restart the game
+  } else {
+    console.log("Thank you for playing! Goodbye!");
+    alert("Thank you for playing! Goodbye!");
+    console.clear();
+  }
 }
 
 game();
