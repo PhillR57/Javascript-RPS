@@ -82,40 +82,46 @@ function game() {
   let playerName = playerName_Input();
   console.log(virusAscii);
   console.log("Try to beat me!")
-  for (let round = 1; round <= 5 && gameFinished==false; round++) {
+  for (let round = 1; round <= 5; round++) {
     playerSelection = "";
     computerSelection = "";
     result = "";
-    while (result!="player" && gameFinished==false) {
-      playerSelection = playerPlay(round);
-      computerSelection = computerPlay();
-      if (playerSelection==="cancel") {
-        console.warn("GAME OVER");
-        console.log("You lost your data");
-        alert("GAME OVER\nYou lost your data");
-        gameFinished = !gameFinished;
-      } else {
-        result = playRound(playerSelection, computerSelection);
-        console.warn(`Round ${round}:`);
-        console.log(`${playerName} selection: ${playerSelection}`);
-        console.log(`Virus selection: ${computerSelection}`);
-        if (result === "player") {
-          console.warn(`${playerName} wins this round!`);
-          playerScore++;
-        } else if (result === "computer") {
-          console.warn("Virus wins this round! Let's play this round again.");
-          computerScore++;
+    if (round == 5) gameFinished = true;
+    {
+        playerSelection = playerPlay(round);
+        computerSelection = computerPlay();
+        if (playerSelection==="cancel") {
+          console.warn("GAME OVER");
+          console.log("You lost your data");
+          alert("GAME OVER\nYou lost your data");
+          gameFinished = !gameFinished;
         } else {
-          console.warn("It's a tie! Let's play this round again.");
-        }
-      }
+          result = playRound(playerSelection, computerSelection);
+          console.warn(`Round ${round}:`);
+          console.log(`${playerName} selection: ${playerSelection}`);
+          console.log(`Virus selection: ${computerSelection}`);
+          if (result === "player") {
+            console.warn(`${playerName} wins this round!`);
+            playerScore++;
+          } else if (result === "computer") {
+            console.warn("Virus wins this round! Let's play this round again.");
+            computerScore++;
+          } else {
+            console.warn("It's a tie!");
+          }
+    }
+      
     }
     if(round==3) alert("You are half way, keep going!");
     if(round==4) alert("Your are almost there, keep going!");
   }
 
-  if(gameFinished===false){
-    alert("You defeated the sinister Virus, congrats, your data is now safe!!!")
+  if(gameFinished==true){
+    if (playerScore > computerScore){
+        alert("You defeated the sinister Virus, congrats, your data is now safe!!!")
+    }else{
+        alert("The virus has won!\nYou lost your data");
+    }
     console.log("Final Score:");
     console.log(`${playerName}: ${playerScore}`);
     console.log(`Computer: ${computerScore}`);
