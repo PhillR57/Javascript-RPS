@@ -19,7 +19,7 @@ function playerPlay(round) {
     if(selectOption===null) return "cancel" //cancels the game
     
     selectOption = selectOption.toLowerCase();
-    if (options.includes(selectOption)) {
+    if (options.includes(selectOption.trim())) {
       return selectOption;
     } else {
       alert("Invalid choice. Please, type: 'rock', 'paper', or 'scissors'")
