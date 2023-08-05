@@ -16,7 +16,11 @@ function playerPlay(round) {
       `Round ${round}: Type one of the following options:\n'rock'\n'paper'\n'scissors'`
     );
     
-    if(selectOption===null) return "cancel" //cancels the game
+    if(selectOption===null){
+      let confirmation = confirm("Are you sure you want to exit the game?");
+      return confirmation? "cancel" : ""
+    } 
+     
     
     selectOption = selectOption.toLowerCase();
     selectOption = selectOption.trim();
