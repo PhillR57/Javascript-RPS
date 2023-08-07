@@ -21,7 +21,7 @@ function playerPlay(round) {
       if(confirmation) {
         return "cancel";
       } else {
-        selectOption = "";
+        continue
       } 
     } 
 
